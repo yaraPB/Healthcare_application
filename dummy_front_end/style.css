@@ -1,0 +1,33 @@
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #333;
+    display: grid;
+    height: 100vh;
+    place-content: center;
+    font-family: monospace;
+    color: aliceblue;
+}
+
+button{
+    font-family: monospace;
+    font-size: 2rem;
+    border-radius: .5rem;
+    background-color: rgb(191, 84, 244);
+    color: aliceblue;
+    padding: 2rem;
+    border: none;
+    margin: 10rem;
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+
+button:active{
+    background-color: rgb(149, 69, 188);
+}
