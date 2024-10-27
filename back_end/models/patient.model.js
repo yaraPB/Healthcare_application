@@ -23,10 +23,8 @@ const PatientSchema = mongoose.Schema({
 //  This is going to allow us to say when we last created this 
 // and when we last updated it
 {
-    Timestamp: true
-}
-
-);
+    timestamps: true
+});
 
 const Patient = mongoose.model("Patient", PatientSchema);
 module.exports = Patient;
