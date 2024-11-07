@@ -1,0 +1,3 @@
+# ignoring the modules to get few files
+node_modules
+mysql_file.sql
