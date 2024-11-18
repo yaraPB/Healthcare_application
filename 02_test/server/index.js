@@ -1,7 +1,11 @@
 import express from "express";
 import mysql from "mysql";
+import cors from 'cors';
 
 const app = express();
+
+app.use(express.json())
+app.use(cors({ origin: "http://localhost:3000" }))
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -27,13 +31,16 @@ app.get("/books", (req, res)=>{
 
 app.post("/books", (req, res)=>{
     const query = "INSERT INTO BOOK (TITLE, DESCRIPTION, COVER) VALUES (?)"
-    const values = ["three year", "description three", "Cover three"];
+    const values = [ req.body.title, req.body.description, req.body.cover];
     db.query(query, [values], (err, data)=>{
         if(err) return res.json(err);
         return res.json(data);
     });
 });
 
-app.listen(3000, () => {
+app.listen(8800, () => {
     console.log("Successfully connected to the backend!");
 });
+
+// to allow the link between the bakcend and the frontend:
+// npm i cors
