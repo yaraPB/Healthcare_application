@@ -1,0 +1,44 @@
+body{
+    display: grid;
+    place-content: center;
+}
+
+.container {
+    width: 400px;
+    clear: both;
+    display: grid;
+    background-color: #999;
+    border-radius: .75rem;
+    border: 4.5px solid aliceblue;
+    padding: 1.5rem;
+  }
+  
+  .container input {
+    width: 100%;
+    clear: both;
+    border: none;
+    border-radius: .35rem;
+  }
+  
+  .submit-container{
+    text-align: center;
+    margin-top: .75rem;
+    display: flex;
+    place-content: center;
+    gap: 16px;
+  }
+
+button{
+  padding: .55rem;
+  border: none;
+  border-radius: .45rem;
+  width: 75px;
+}  
+
+button:hover{
+  background-color: rgb(193, 221, 249);
+}
+
+button:active{
+  background-color: rgb(173, 213, 254);
+}
