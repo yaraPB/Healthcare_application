@@ -1,5 +1,5 @@
 import React from 'react'
-import './assets/AppointmentForm.css'
+
 
 const AppointmentForm = () => {
   return (
