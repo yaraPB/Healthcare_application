@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Admin from './Admin';
+import { parsePhoneNumberFromString, isValidPhoneNumber } from 'libphonenumber-js';
+import PhoneInput from 'react-phone-input-2'; 
+import 'react-phone-input-2/lib/style.css'; 
+import './PhoneDeco.css'
+
 
 function RegisterForm() {
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
+
+  const countryCode = '+1'; 
+
+  const handlePhoneNumberChange = (value) => {
+  
+    const phoneNumberObj = parsePhoneNumberFromString(value, 'US'); 
+    if (phoneNumberObj && isValidPhoneNumber(value, 'US')) {
+      setFormattedPhoneNumber(phoneNumberObj.formatInternational());
+    } else {
+      setFormattedPhoneNumber(value); 
+    }
+    setPhoneNumber(value); 
+  };
+
   return (
     <div
       className="d-flex vh-100"
@@ -11,7 +34,7 @@ function RegisterForm() {
         backgroundColor: '#121212',
         color: '#FFFFFF',
         paddingTop: '3rem',
-        paddingBottom: '3rem', // Ensures padding at the bottom as well
+        paddingBottom: '3rem',
       }}
     >
       {/* Left Half: Form */}
@@ -22,7 +45,7 @@ function RegisterForm() {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
-              placeholder="John@Doe.gmail.com"
+              placeholder="JohnDoe@gmail.com"
               style={{
                 backgroundColor: '#555',
                 color: '#FFF',
@@ -49,17 +72,22 @@ function RegisterForm() {
 
           <Form.Group className="mb-3" controlId="formBasicPhone">
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="tel"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              required
-              placeholder="+1"
-              style={{
+            {/* Use PhoneInput component */}
+            <PhoneInput
+              country={'us'} // Set the default country
+              value={phoneNumber} // Bind the state value
+              onChange={handlePhoneNumberChange} // Handle phone number change
+              placeholder="Enter phone number"
+              inputStyle={{
                 backgroundColor: '#555',
-                color: '#FFF',
+                color: '#fff',
                 border: '1.5px solid #444',
+                width: '100%',
               }}
             />
+            <div style={{ color: '#FFF', marginTop: '10px' }}>
+              {/* {formattedPhoneNumber && <p>Formatted Number: {formattedPhoneNumber}</p>} */}
+            </div>
           </Form.Group>
 
           <Button
@@ -76,7 +104,7 @@ function RegisterForm() {
           </Button>
         </Form>
 
-        {/* Footer Content (Part of Form) */}
+        {/* Footer Content */}
         <div className="d-flex justify-content-between align-items-center mt-4 w-100">
           {/* Admin Button */}
           <Button
@@ -89,10 +117,11 @@ function RegisterForm() {
               fontSize: '0.9rem',
               textDecoration: 'underline',
             }}
+            onClick={() => setShowAdmin(!showAdmin)}
           >
             Admin
           </Button>
-
+          {showAdmin && <Admin />}
           {/* PMS 2024 Text */}
           <div className="text-center flex-grow-1" style={{ color: '#888' }}>
             PMS 2024
@@ -104,7 +133,7 @@ function RegisterForm() {
       <div
         className="d-flex justify-content-center align-items-center w-50"
         style={{
-          top: '0',
+          top: 0
         }}
       >
         <video width="100%" height="100%" muted autoPlay loop>

@@ -1,0 +1,9 @@
+.react-tel-input .country-list {
+    background-color: #222 !important; /* White background for country list */
+    color: #FFF !important; /* Black text for country list */
+  }
+
+.react-tel-input .country-list:hover {
+    background-color: #222 !important; /* White background for country list */
+    color: #888 !important; /* Black text for country list */
+  }
