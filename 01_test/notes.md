@@ -1,0 +1,1 @@
+## Originally made for MongoDB
