@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();  // Start the session only if no session is already active
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +25,7 @@ try
 {
     $conn = new PDO("mysql:host=$server; dbname=$db", $user, $password);
 
-    $qry = "SELECT appointment_id, appointment_date  
+    $qry = "SELECT appointment_id, appointment_date_beg, appointment_date_end   
              FROM appointment
              ORDER BY appointment_id;";
     $stmt = $conn->prepare($qry);
@@ -28,13 +33,14 @@ try
 
     echo "<table>\n";
     echo "<caption>Appointments</caption>\n";
-    echo "<tr><th>Appointment Number</th><th>Date</th></tr>\n";
+    echo "<tr><th>Appointment Number</th><th>Beginning Date</th><th>End Date</th></tr>\n";
 
     //loop through each row
     while ($result = $stmt->fetch()) {
         echo "<tr>";
         echo "<td><span class='number'><a href='appointments/appointment_details.php?id=" . $result['appointment_id'] . "'>" . $result['appointment_id'] . "</a></span></td>";
-        echo "<td>" . $result['appointment_date'] . "</td>";
+        echo "<td>" . $result['appointment_date_beg'] . "</td>";
+        echo "<td>" . $result['appointment_date_end'] . "</td>";
         echo "</tr>\n";
     }
     echo "</table>\n";

@@ -1,11 +1,14 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();  // Start the session only if no session is already active
+}
 
 // initializing variables
 $lname = "";
 $fname = "";
 $email = "";
 $phone = "";
+$pswrd = "";
 $errors = array(); 
 
 include "../config/init.php";
@@ -22,6 +25,7 @@ try
     $fname = $_POST['fname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $pswrd = $_POST['pswrd'];
 
     // Check that the mandatory form fields are filled
     if (empty($lname))
@@ -32,6 +36,8 @@ try
         array_push($errors, "Area code is required");
     if (empty($phone))
         array_push($errors, "Phone is required");
+    if (empty($pswrd))
+        array_push($errors, "Password is required");
 
     // First make sure a patient does not already exist with same name and phone #
     $qry = "SELECT 1
@@ -40,6 +46,7 @@ try
                    patient_first_name = :fname AND";
 
     $qry .= "      patient_email = :email AND
+                   patient_password = :pswrd AND
                    patient_phone = :phone;";
     $stmt = $conn->prepare($qry);
     if ($stmt->fetch()) 
@@ -54,16 +61,17 @@ try
         $result = $stmt->fetch();
         $code = 1 + intval($result['maxcode']);
         $sql = "INSERT INTO PATIENT
-        (patient_last_name, patient_first_name, patient_email, patient_phone)
+        (patient_last_name, patient_first_name, patient_email, patient_phone, patient_password)
         VALUES
-        (:lname, :fname, :email, :phone);";
+        (:lname, :fname, :email, :phone, :pswrd);";
 
         $stmt = $conn->prepare($sql);
 
         $stmt->execute([':lname' => $lname,
                         ':fname' => $fname,
                         ':email' => $email,
-                        ':phone' => $phone]);
+                        ':phone' => $phone,
+                        ':pswrd' => $pswrd, ]);
         
         $_SESSION['name'] = $lname;
         $_SESSION['success'] = "You are now subscribed";

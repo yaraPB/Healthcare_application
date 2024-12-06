@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +27,7 @@ try {
         $conn = new PDO("mysql:host=$server;dbname=$db", $user, $password);
 
         // Query to fetch details for the specific appointment
-        $qry = "SELECT APPOINTMENT_ID, APPOINTMENT_DATE, 
+        $qry = "SELECT APPOINTMENT_ID, APPOINTMENT_DATE_BEG, APPOINTMENT_DATE_END,
                        P.PATIENT_ID, P.PATIENT_EMAIL,
                        D.DOCTOR_ID, D.DOCTOR_SPECIALITY
                 FROM APPOINTMENT A
@@ -43,7 +46,8 @@ try {
             echo "<caption>Appointment Details</caption>\n";
             echo "<tr><th>Field</th><th>Value</th></tr>\n";
             echo "<tr><td>Appointment ID</td><td>" . $result['APPOINTMENT_ID'] . "</td></tr>";
-            echo "<tr><td>Appointment Date</td><td>" . $result['APPOINTMENT_DATE'] . "</td></tr>";
+            echo "<tr><td>Appointment Beginning Date</td><td>" . $result['APPOINTMENT_DATE_BEG'] . "</td></tr>";
+            echo "<tr><td>Appointment Ending Date</td><td>" . $result['APPOINTMENT_DATE_END'] . "</td></tr>";
             echo "<tr><td>Patient ID</td><td>" . $result['PATIENT_ID'] . "</td></tr>";
             echo "<tr><td>Patient Email</td><td>" . $result['PATIENT_EMAIL'] . "</td></tr>";
             echo "<tr><td>Doctor ID</td><td>" . $result['DOCTOR_ID'] . "</td></tr>";
