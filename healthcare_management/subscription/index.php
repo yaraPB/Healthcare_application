@@ -1,9 +1,8 @@
 <?php 
-  session_start(); 
 
-  if (!isset($_SESSION['name'])) {
-        $_SESSION['msg'] = "You can subscribe";
-        header('location: subscribe.php');
+
+  if (!isset($_SESSION['last_name'])) {
+    session_start(); 
   }
 ?>
 <!DOCTYPE html>
@@ -31,8 +30,8 @@
     <?php endif ?>
 
     <!-- subscribed user information -->
-    <?php  if (isset($_SESSION['name'])) : ?>
-      <p>Welcome <strong><?php echo $_SESSION['name']; ?></strong></p>
+    <?php  if (isset($_SESSION['last_name'])) : ?>
+      <p>Welcome <strong><?php echo $_SESSION['last_name']; ?></strong></p>
     <?php endif ?>
   </div>
                 

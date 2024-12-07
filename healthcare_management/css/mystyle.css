@@ -9,6 +9,10 @@ body {
   background-color: #ffffff; /* White background for light mode */
 }
 
+html{
+  font-size: 1.05rem;
+}
+
 /* Style the header */
 header {
   overflow: hidden;
@@ -38,6 +42,8 @@ header a:hover {
   padding: 10px;
   height: 100%;
   color: #333333; /* Dark text for content */
+  overflow-y: auto; 
+  flex: 1;
 }
 
 /* Style the footer */
@@ -45,7 +51,7 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  position: absolute;
+  position: relative;
   background-color: #4f8fd1; /* Blue footer */
   padding: 1px;
   text-align: center;
@@ -157,4 +163,19 @@ form:hover {
 .img-container{
   text-align: center;
   display: inline-block;
+}
+
+.date{
+  border: 2.5px solid #333;
+  padding: .5rem;
+  text-align: center;
+  border-radius: .5rem;
+  width: 500px;
+  background-color: #ffffff;
+  display: grid;
+  place-content: center;
+}
+
+.apt{
+  color: #63a3e3; 
 }

@@ -1,39 +1,26 @@
-<?php
+<?php 
+session_start();
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Booking</title>
+        <base href="http://localhost:8000/healthcare_management/">
+        <link rel="stylesheet" href="css/mystyle.css">
+    </head>
+    <body>
+        <div class="wrapper2">
+            <?php include '../inc/header.php'; ?>
+            <div class="content">
+                <h2>Booking</h2>
+                <p>Book or a new consultation today <strong><?php echo $_SESSION['last_name']; ?></strong>.</p>
+                <p>You can also cancel a previous consultation today <strong><?php echo $_SESSION['last_name']; ?></strong>.</p>
+            </div>
+        </div>
+        <?php include '../inc/footer.php'; ?>
+    </body>
+    </html>
+    <?php
+    exit();
 
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();  // Start the session only if no session is already active
-}
-if (!isset($_SESSION['last_name'])) {
-    $_SESSION['msg'] = "You need to log in to book an appointment";
-    header('location: ../subscription/subscribe.php');
-    exit;
-}
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Book Appointment</title>
-  <base href="http://localhost:8000/healthcare_management/">
-  <link rel="stylesheet" href="css/mystyle.css">
-</head>
-<body>
-  <div class="wrapper">
-    <?php include '../inc/header.php'; ?>
-
-    <div class="content">
-      <h2>Book an Appointment</h2>
-      <form method="post" action="book_appointment.php">
-        <div class="input-group">
-          <label>Appointment Date</label>
-          <input type="date" name="appointment_date" required>
-        </div>
-        <div class="input-group">
-          <button type="submit" class="btn" name="book_appointment">Book</button>
-        </div>
-      </form>
-    </div>
-
-    <?php include '../inc/footer.php'; ?>
-  </div>
-</body>
-</html>

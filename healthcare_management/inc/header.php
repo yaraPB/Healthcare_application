@@ -13,7 +13,8 @@ echo "<header>
   // Check if the user is logged in
   if (isset($_SESSION['last_name'])) {  // Assuming 'user_id' is set when the user logs in
     echo "<a href='booking/booking.php'>Booking</a>";  // Show logout link if logged in
-    echo "<a href='logout/logout.php'>Logout</a>";
+    echo "<a href='Profile/profile.php'>Profile</a>";
+    echo "<a href='logout/logout.php' style='color: black'>Logout</a>";
 } 
 echo "</header>\n";
 ?>

@@ -39,6 +39,7 @@ try {
                 // Login success: Set session and redirect
                 $_SESSION['last_name'] = $result['patient_last_name'];
                 $_SESSION['first_name'] = $result['patient_first_name'];
+                $_SESSION['patient_id'] = $result['patient_id'];
                 $_SESSION['success'] = "You are now logged in";
                 header('location: ../index.php');
                 exit();

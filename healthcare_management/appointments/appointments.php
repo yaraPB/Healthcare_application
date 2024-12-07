@@ -51,6 +51,7 @@ catch(PDOException $e) {
 
 $conn = null;
 ?>
+
 </div>
 
 <?php include '../inc/footer.php';?>

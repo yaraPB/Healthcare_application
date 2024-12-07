@@ -10,6 +10,18 @@ CREATE TABLE patient(
     patient_email varchar(64) NOT NULL UNIQUE,
     patient_password varchar(64) NOT NULL
 );
+DROP DATABASE IF EXISTS healthcare;
+CREATE DATABASE healthcare;
+USE healthcare;
+
+CREATE TABLE patient(
+    patient_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_last_name varchar(64) NOT NULL,
+    patient_first_name varchar(64) NOT NULL,
+    patient_phone varchar(10) NOT NULL UNIQUE,
+    patient_email varchar(64) NOT NULL UNIQUE,
+    patient_password varchar(64) NOT NULL
+);
 
 CREATE TABLE doctor(
     doctor_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -54,6 +66,10 @@ INSERT INTO doctor (doctor_last_name, doctor_first_name, doctor_speciality) VALU
 ('Hall', 'Logan', 'General Medicine'),
 ('Jones', 'Ava', 'Psychiatry'),
 ('King', 'Liam', 'Cardiology'),
+('Kurt', 'James', 'General Medicine'),
+('Jones', 'Arthur', 'Cardiology'),
+('Larson', 'Martha', 'Pediatry'),
+('Heartstone', 'Alice', 'Cardiology'),
 ('Lopez', 'Charlotte', 'General Medicine');
 
 INSERT INTO appointment (appointment_date_beg, appointment_date_end, patient_id, doctor_id) VALUES
@@ -64,6 +80,6 @@ INSERT INTO appointment (appointment_date_beg, appointment_date_end, patient_id,
 ('2024-12-07 09:30:00', '2024-12-07 10:30:00', 5, 6),
 ('2024-12-07 13:00:00', '2024-12-07 13:30:00', 9, 6),
 ('2024-12-08 08:00:00', '2024-12-08 08:30:00', 7, 7),
-('2024-12-08 15:00:00', '2024-12-08 15:45:00', 1, 5),
+('2024-12-08 15:00:00', '2024-12-27 15:45:00', 1, 5),
 ('2024-12-09 10:00:00', '2024-12-09 11:00:00', 9, 9),
 ('2024-12-09 16:00:00', '2024-12-09 17:00:00', 10, 4);

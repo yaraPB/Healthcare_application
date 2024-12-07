@@ -73,7 +73,7 @@ try
                         ':phone' => $phone,
                         ':pswrd' => $pswrd, ]);
         
-        $_SESSION['name'] = $lname;
+        $_SESSION['lname'] = $lname;
         $_SESSION['success'] = "You are now subscribed";
         header('location: index.php');
     }
