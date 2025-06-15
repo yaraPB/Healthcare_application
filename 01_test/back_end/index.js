@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 // npm i nodemon -D
 
 // to use mongodb we do the following: npm i mongoose
-mongoose.connect("mongodb+srv://yarakouttane234:gauX4OyzWFNL3p8L@mongodb.x6fp0.mongodb.net/?retryWrites=true&w=majority&appName=MongoDB")
+mongoose.connect("")
 .then(() =>{
     console.log("Connected to the database!");
     app.listen(3000, () =>{
